@@ -3,6 +3,8 @@
 
 # 如何使用
 
+目前只适用于windows平台
+
 安装python3
 
 安装scapy
@@ -13,6 +15,6 @@ pip3 install "scapy>=2.4.3"
 
 # 运行情况
 
-![ArpSender](C:\Users\mhdx\AppData\Roaming\Typora\typora-user-images\1578237257254.png)
+![ArpSender](.\images\ArpSender.png)
 
-![ArpHunter](C:\Users\mhdx\AppData\Roaming\Typora\typora-user-images\1578237534324.png)
+![ArpHunter](.\images\ArpHunter.png)
