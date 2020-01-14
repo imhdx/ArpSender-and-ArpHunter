@@ -3,17 +3,11 @@ import tkinter.ttk as ttk
 from scapy.all import *
 
 
-def get_if_name():  # 获取所有可用网卡的name
-    guids = get_if_list()  # 获取所有可用网卡的guid
-    if_list = get_windows_if_list()  # 获取windows上所有网卡的所有信息
-    names = []  # 存储所有可用网卡的name
-    for guid in guids:
-        for _if in if_list:  # 双重循环扫描
-            if _if['guid'] in guid:
-                names.append(_if['name'])
-                break
-    return names
-
+def get_if_name():
+	import os
+	if os.name=='nt':
+		return [iface['name'] for iface in get_windows_if_list()]
+	return get_if_list()
 
 class App:  # 界面设计
     def __init__(self, master):
@@ -35,21 +29,21 @@ class App:  # 界面设计
         com.config(state='readonly')
         com.place(x=100, y=10)
         self.stbu = ttk.Button(self.master, text='开始', command=self.start)
-        self.tree.column('长度(B)', width=55, anchor='center')
-        self.tree.column('源IP地址', width=110, anchor='w')
-        self.tree.column('源MAC地址', width=110, anchor='w')
-        self.tree.column('目的IP地址', width=110, anchor='w')
-        self.tree.column('目的MAC地址', width=110, anchor='w')
+
         self.stbu.place(x=25, y=50)
         ttk.Button(self.master, text='停止', command=self.stop).place(x=236, y=50)
         ttk.Button(self.master, text='清除所有', command=self.clear).place(x=447, y=50)
         ttk.Button(self.master, text='退出', command=self.quit).place(x=658, y=50)
-
         self.tree = ttk.Treeview(self.master, height=10,
                                  column=('编号', '协议类型', '时间', '长度(B)', '源IP地址', '源MAC地址', '目的IP地址', '目的MAC地址'))
         self.tree.column('编号', width=50, anchor='center')
         self.tree.column('协议类型', width=80, anchor='center')
         self.tree.column('时间', width=90, anchor='center')
+        self.tree.column('长度(B)', width=55, anchor='center')
+        self.tree.column('源IP地址', width=110, anchor='w')
+        self.tree.column('源MAC地址', width=110, anchor='w')
+        self.tree.column('目的IP地址', width=110, anchor='w')
+        self.tree.column('目的MAC地址', width=110, anchor='w')
         self.tree.heading('编号', text='编号')
         self.tree.heading('协议类型', text='协议类型')
         self.tree.heading('时间', text='时间')

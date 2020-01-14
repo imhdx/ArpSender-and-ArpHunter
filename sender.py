@@ -4,16 +4,11 @@ import tkinter.messagebox
 from scapy.all import *
 
 
-def get_if_name():  # 获取所有可用网卡的name
-    guids = get_if_list()  # 获取所有可用网卡的guid
-    if_list = get_windows_if_list()  # 获取windows上所有网卡的所有信息
-    names = []  # 存储所有可用网卡的name
-    for guid in guids:
-        for _if in if_list:  # 双重循环扫描
-            if _if['guid'] in guid:
-                names.append(_if['name'])
-                break
-    return names
+def get_if_name():
+	import os
+	if os.name=='nt':
+		return [iface['name'] for iface in get_windows_if_list()]
+	return get_if_list()
 
 
 def is_ip(ip):  # 判断ip是否为合法ip
