@@ -4,11 +4,11 @@ import tkinter.messagebox
 from scapy.all import *
 
 
-def get_if_name():
-	import os
-	if os.name=='nt':
-		return [iface['name'] for iface in get_windows_if_list()]
-	return get_if_list()
+def get_if_name():  # 获取网卡名字
+    import os
+    if os.name == 'nt':
+        return [iface['name'] for iface in get_windows_if_list()]
+    return get_if_list()
 
 
 def is_ip(ip):  # 判断ip是否为合法ip
