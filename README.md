@@ -15,6 +15,5 @@ pip3 install "scapy>=2.4.3"
 
 # 运行情况
 
-![ArpSender](/images/ArpSender.png "ArpSender")
-
-![ArpHunter](/images/ArpHunter.png "ArpHunter")
+<img src="/images/ArpSender.png" width = "600" height = "300" alt="ArpSender" align=center />
+<img src="/images/ArpHunter.png" width = "600" height = "300" alt="ArpHunter" align=center />
